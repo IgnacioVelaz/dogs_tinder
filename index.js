@@ -1,43 +1,99 @@
-import {Dog} from '/Dogs.js'
 import dogs from '/data.js'
+import Dog from '/Dogs.js'
+import {randomNum} from '/utils.js'
 
-// Select a random dog to show first
-// Need to convert into a function that can be reused
-let dogsArray = dogs
-let nextDogIndex = Math.floor(Math.random()*dogsArray.length)
-let newDog = new Dog(dogsArray[nextDogIndex])
+let dogsLeft = JSON.parse(JSON.stringify(dogs)) 
+const profile = document.querySelector('#profile')
+const buttons = document.querySelectorAll('.btn')
+const discover = document.querySelector('#discover-container')
 
 
 
 
-function setImage(data){
-    document.querySelector('#profile').style.backgroundImage = `url('${data.avatar}')`
+const getCurrentDog = () => {
+    let currentDogIndex = randomNum(dogsLeft.length)
+    let currentDogData = dogsLeft.splice(currentDogIndex, 1)
+    let currentDog = new Dog(currentDogData[0])
+    console.log(currentDog)
+    console.log(dogs[0])
+    return currentDog 
 }
 
-/* Display the random dog profile and image into the app*/
-document.querySelector('#profile').innerHTML = newDog.innerHtml()
-setImage(newDog)
+let currentDog = getCurrentDog()
 
-
-/* Change to the next dog */
-const dogChange = () => { 
-dogsArray.splice(nextDogIndex, 1)
-console.log(dogsArray)
-nextDogIndex = Math.floor(Math.random()*dogsArray.length)
-newDog = new Dog(dogsArray[nextDogIndex])
-console.log(newDog)
-document.querySelector('#profile').innerHTML = newDog.innerHtml()
-setImage(newDog)
+const renderCurrentDog = (currentDog) => {
+    let currentDogHtml = currentDog.innerHtml()
+    console.log(currentDogHtml)
+    profile.innerHTML = currentDogHtml
+    profile.style.backgroundImage = `url('${currentDog.avatar}')`
 }
 
+renderCurrentDog(currentDog)
 
-const dogAccept = (newDog) => {
+const disableButtons = () => {
+    for( let button of buttons){
+        button.classList.add('disabled')
+    }
+}
+
+const enableButtons = () => {
+    for( let button of buttons){
+        button.classList.remove('disabled')
+    }
+}
+
+const nextDog = () => {
+    disableButtons()
+    currentDog.hasBeenSwiped = true
+    profile.innerHTML = 
+        currentDog.hasBeenLiked? `<img src="images/badge-like.png" alt="liked" class="badge">`:
+        currentDog.hasBeenSwiped? `<img src="images/badge-nope.png" alt="nope" class="badge">`:
+        ' '
     
+    setTimeout(()=>{
+        if(dogsLeft.length > 0){
+        let currentDog = getCurrentDog()
+        renderCurrentDog(currentDog)
+        enableButtons()
+    } else
+        {
+         
+          profile.innerHTML = 
+          `
+          <div class="end">
+          <p class="end-paragraph">There are no more doggies around you</p>
+          <button class="restart"> Start again </button>
+          </div>`
+          
+          profile.classList.add('end')
+          document.querySelector('.restart').addEventListener('click', restart)
+        }
+    }, 1000)
 }
 
-// Run dogChange function when clicking any button
-document.getElementById('accept-btn').addEventListener('click', dogChange)
-document.getElementById('reject-btn').addEventListener('click', dogChange)
+const rejectDog = () => {
+    currentDog.hasBeenLiked = false
+    nextDog()
+}
+
+const acceptDog = () => {
+    currentDog.hasBeenLiked = true
+    nextDog()
+}
+
+const restart = () => {
+    dogsLeft = JSON.parse(JSON.stringify(dogs)) 
+    let currentDog = getCurrentDog()
+    renderCurrentDog(currentDog) 
+    enableButtons()
+    profile.classList.remove('end')
+}
+
+
+
+document.querySelector('#reject-btn').addEventListener('click', rejectDog)
+document.querySelector('#accept-btn').addEventListener('click', acceptDog)
+
 
 
 
