@@ -1,0 +1,219 @@
+/*========= Reset =========*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*========= End Reset =========*/
+
+/*========= Global ==========*/
+
+body{ 
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.125em;
+    color: #fff;
+    font-style: normal;
+}
+
+body > * {
+    margin-top: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+
+
+/*========== Main Layout =========*/
+body{
+    height: 100vh;
+}
+
+main {
+    max-width: 766px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgb(246,247,251,1);
+    background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,247,251,1) 100%);
+
+}
+
+/*======== Top bar =========*/
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.top-bar-icon {
+    width: 42px;
+    height: 42px;
+}
+
+.logo {
+    width: 84px;
+    height: auto;
+}
+
+/*========= Discover Container ==========*/
+.discover-container {
+    height:90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*========= Profile Section ==========*/
+.profile {
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 14% .5em .5em;
+    border-radius: 15px;
+    flex: 1;
+}
+
+.badge{
+    width: 50%;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 20%;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: .125em;
+}
+
+p {
+    color: #B7B7B7 ;
+    line-height: 1.333;
+}
+
+/*========= Selectors Section =========*/
+.selectors {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+    margin: 0 auto;
+}
+
+.btn{
+    border-radius: 50%;
+    height: 90px;
+    width: 90px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    -webkit-box-shadow: 0px 10px 20px #E9E9EA;
+    -moz-box-shadow: 0px 10px 20px #E9E9EA;
+    box-shadow: 0px 10px 20px #E9E9EA;
+}
+
+.disabled{
+    opacity: .5;
+    pointer-events: none;
+}
+
+#accept-btn:active {
+    background-color: #d4f7e4f7;
+}
+
+
+#reject-btn:active{
+    background-color: #f7d6d4f2;
+}
+
+
+/*========= End Section =========*/
+
+.end{
+    background-image: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.end-paragraph{
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.restart {
+    font-size: 20px;
+    border-radius: 50px;
+    padding: 20px 40px;
+    border: 0;
+    color: #fff;
+    text-transform:uppercase;
+    letter-spacing: .25em;
+    line-height: 1.5em;
+    background: rgb(251,38,126);
+    background: linear-gradient(90deg, rgba(251,38,126,1) 0%, rgba(255,118,84,1) 100%);
+
+}
+
+
