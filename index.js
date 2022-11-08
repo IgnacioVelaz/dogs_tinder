@@ -1,6 +1,6 @@
-import dogs from '/data.js'
-import Dog from '/Dogs.js'
-import {randomNum} from '/utils.js'
+import dogs from './data.js'
+import Dog from './Dogs.js'
+import {randomNum} from './utils.js'
 
 let dogsLeft = JSON.parse(JSON.stringify(dogs)) 
 const profile = document.querySelector('#profile')
